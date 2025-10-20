@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en-us" class="m-auto dark">
+  <head>
+	<meta name="generator" content="Hugo 0.150.1"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <head>
+  
+  <title>My Blog</title>
+  
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+  />
+  <meta name="theme-color" content="" />
+  <meta name="description" content="My Blog" />
+  <meta name="author" content="Van Thang" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="//fonts.googleapis.com/css?family=Didact+Gothic%7CRoboto:400%7CRoboto+Mono"
+  />
+
+  
+  
+  <link href="/main.css" rel="stylesheet" />
+  
+
+  <style>
+     
+    html {
+      touch-action: manipulation;
+      scroll-behavior: smooth;
+    }
+
+    .panel {
+      max-height: 0;
+      transition: 0.3s ease-out;
+    }
+
+    .profile-photo-container {
+      img {
+        max-width: 100%;
+      }
+    }
+     
+    .pagefind-ui__search-input {
+      color: black;
+      width: 100%;
+      padding: 0.5em;
+      border-radius: 0.25em;
+      border: 1px solid gray;
+    }
+    .pagefind-ui__search-clear {
+      display: none;
+    }
+    .dark .pagefind-ui__search-input {
+      color: white;
+      background-color: #322d2d;
+      width: 100%;
+      padding: 0.5em;
+      border-radius: 0.25em;
+      border: 1px solid gray;
+    }
+    .dark .pagefind-ui__search-input::placeholder {
+      color: #8f8f8f;
+    }
+    .chevron {
+      transition: 300ms linear rotate;
+    }
+    .active > .chevron {
+      transform: rotate(90deg);
+    }
+  </style>
+
+  <script>
+    const expandAccordion = (elem) => {
+      const allPanels = Array.from(document.querySelectorAll(".panel"));
+      const allAccordion = Array.from(document.querySelectorAll(".accordion"));
+
+      if (!elem.parentElement.classList.contains("active")) {
+        allAccordion.forEach((acc) => {
+          acc.classList.remove("active");
+        });
+        elem.parentElement.classList.add("active");
+        allPanels.forEach(function (elem) {
+          elem.style.maxHeight = null;
+        });
+        let activePanel = elem.parentElement.nextElementSibling;
+        if (
+          activePanel.id != "skill-panel" &&
+          document.querySelector("#skill-panel")
+        ) {
+          let skillBars = Array.from(
+            document.querySelectorAll("#skill-percent")
+          );
+          skillBars.forEach((elem) => {
+            elem.style.width = "0";
+          });
+        }
+        activePanel.style.maxHeight = activePanel.scrollHeight + "px";
+      }
+    };
+  </script>
+
+  <script>
+    let html = document.querySelector("html");
+    let theme = window.localStorage.getItem("theme");
+
+    const setTheme = (theme) => {
+      html.classList.remove("light");
+      if (theme === "dark") {
+        html.classList.add("dark");
+        window.localStorage.setItem("theme", "dark");
+      } else {
+        html.classList.remove("dark");
+        window.localStorage.setItem("theme", "light");
+      }
+      fixThemeToggleIcon(theme);
+    };
+
+    const fixThemeToggleIcon = (theme) => {
+      let themeToggle = document.querySelector(".theme-toggle");
+      if (themeToggle) {
+        if (theme === "dark") {
+          themeToggle.classList.remove("fa-moon");
+          themeToggle.classList.add("fa-sun");
+        } else {
+          themeToggle.classList.remove("fa-sun");
+          themeToggle.classList.add("fa-moon");
+        }
+      }
+    };
+
+    if (theme == null) {
+      if (html.classList.contains("dark")) {
+        theme = "dark";
+      } else if (html.classList.contains("light")) {
+        theme = "light";
+      } else {
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+        if (prefersDark) {
+          theme = "dark";
+        } else {
+          theme = "light";
+        }
+      }
+    }
+
+    setTheme(theme);
+
+    const toggleTheme = () => {
+      html.classList.contains("dark") ? setTheme("light") : setTheme("dark");
+    };
+
+    window.onload = () => {
+      fixThemeToggleIcon(theme);
+
+      let defaultActivePanel = document.querySelector(".accordion.active");
+      if (defaultActivePanel) {
+        defaultActivePanel.nextElementSibling.style.maxHeight =
+          defaultActivePanel.nextElementSibling.scrollHeight + "px";
+      }
+    };
+
+    window.onresize = () => {
+      let defaultActivePanel = document.querySelector(".accordion.active");
+      if (defaultActivePanel) {
+        defaultActivePanel.nextElementSibling.style.maxHeight =
+          defaultActivePanel.nextElementSibling.scrollHeight + "px";
+      }
+    };
+  </script>
+</head>
+
+    
+    <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+  </head>
+  <body class="min-h-screen p-4 m-auto max-w-4xl flex flex-col bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300">
+    
+    
+      <header
+  class="nav flex flex-row row py-2 mb-6 w-full border-b border-gray-700 dark:border-gray-300 justify-between"
+>
+  <div>
+    <a class="nav-menu-item" href="http://localhost:1313/">Trang chủ</a>
+    <a class="nav-menu-item" href="/blog">Blog</a>
+    <a class="nav-menu-item" href="/profile">Profile</a>
+  </div>
+  <div>
+    <a class="mr-4" href="/search">
+      <i class="fas fa-search"></i>
+    </a>
+    <i
+      class="fas fa-sun theme-toggle text-blue-500 hover:text-blue-700 dark:text-yellow-300 dark:hover:text-yellow-500 cursor-pointer text-lg mr-9 sm:mr-0"
+      onclick="toggleTheme()"
+    ></i>
+  </div>
+</header>
+
+
+
+    
+
+    <main class="grow">
+      
+<div class="grid grid-cols-1 md:grid-cols-5 gap-2 sm py-2">
+  <div class="col-span-2">
+    <div class="bg-gray-300 dark:bg-darker drop-shadow-md p-2 rounded-t-lg">
+      <div class="flex flex-col justify-center">
+        <div
+  class="w-full p-2 flex justify-center align-middle profile-photo-container"
+>
+  <img
+    class="rounded-sm"
+    src="/images/profile.jpg"
+    alt="Van Thang"
+  />
+</div>
+
+        <div class="px-2 text-center">
+          <h1 class="mb-0">Van Thang, Tsniw.</h1>
+<h2 class="mb-0">LTM</h2>
+<h3 class="mb-4">Ho Chi Minh City, Vietnam</h3>
+<div class="mb-4 flex flex-wrap justify-center">
+  
+</div>
+
+          
+        </div>
+      </div>
+    </div>
+    <footer class="text-sm text-center border-t border-gray-500  bg-gray-200 dark:bg-dark rounded-b-lg py-4 ">
+    
+    <div class="mb-4 space-x-4">
+        
+        <a href="https://github.com/yourusername" target="_blank" rel="noopener" aria-label="Github"
+           class="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-200">
+            <i class="fab fa-github text-xl"></i>
+        </a>
+        <a href="https://www.facebook.com/thang.tran.402633?locale=vi_VN" target="_blank" rel="noopener" aria-label="Facebook"
+           class="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-200">
+            <i class="fab fa-facebook-f text-xl"></i>
+        </a>
+        <a href="mailto:thangtran@gmail.com" aria-label="Email"
+           class="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-200">
+            <i class="fas fa-envelope text-xl"></i>
+        </a>
+        <a href="/profile" aria-label="Profile"
+           class="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-200">
+            <i class="fas fa-user-circle text-xl"></i>
+        </a>
+    </div>
+
+    <p class="text-xs text-gray-600 dark:text-gray-400">
+        © 2025 <span class="font-medium">Trần Văn Thắng</span>. All rights reserved.
+        
+        
+            | Built with <a href="https://gohugo.io/" target="_blank" class="hover:underline">Hugo</a>
+        
+    </p>
+
+    
+</footer>
+  </div>
+  <div class="col-span-3 relative">
+    
+    <div class="px-2">
+      <h2 class="accordion active">
+        
+        <p
+         
+          onclick="expandAccordion(this)"
+          style="cursor: pointer"
+        >
+          <i class="fas fa-user"></i>
+          Về tôi</p>
+      </h2>
+
+      <div
+        class="panel overflow-hidden px-2 ml-2"
+        
+      >
+        <div class=""><p class="markdownify">
+  Xin chào! Mình là Trần Văn Thắng, yêu thích Java, JavaScript và AI. Sinh viên HUTECH, chuyên ngành Công nghệ thông tin.
+</p>
+</div>
+      </div>
+    </div>
+    
+    <div class="px-2">
+      <h2 class="accordion">
+        
+        <p
+         
+          onclick="expandAccordion(this)"
+          style="cursor: pointer"
+        >
+          <i class="fas fa-briefcase"></i>
+          Kinh nghiệm</p>
+      </h2>
+
+      <div
+        class="panel overflow-hidden px-2 ml-2"
+        
+      >
+        <div class="">
+  <h4 style="text-decoration: underline;">Nghiên cứu viên - Dự án Phát hiện tấn công mạng bằng AI</h4>
+  <p class="mb-0">
+    
+    
+      Trường Đại học HUTECH
+    
+  </p>
+
+  
+    <div class="prose prose-stone dark:prose-invert max-w-none">
+      <ul>
+<li>Tiếp nhận kế hoạch dự án từ Thầy hướng dẫn</li>
+<li>Quản lý dự án, đề xuất phương pháp phát triển với đội nhóm 3 người</li>
+<li>Tìm kiếm dữ liệu và mô hình phù hợp với dự án</li>
+<li>Tiền xử lý dữ liệu và huấn luyện mô hình</li>
+<li>Lập trình và debug trực tiếp trong quá trình dự án</li>
+<li>So sánh, đánh giá các mô hình và chọn mô hình tối ưu</li>
+<li>Viết luận án và bảo vệ trước hội đồng chấm điểm</li>
+</ul>
+
+    </div>
+  
+
+  <h4 style="text-decoration: underline;">Lập trình viên - Dự án CFP (Giao dịch tài chính tự động)</h4>
+  <p class="mb-0">
+    
+    
+      Công ty/Tổ chức liên quan
+    
+  </p>
+
+  
+    <div class="prose prose-stone dark:prose-invert max-w-none">
+      <ul>
+<li>Tiếp nhận và tìm hiểu dự án từ Leader</li>
+<li>Phát triển Web sử dụng React + Vite</li>
+<li>Sử dụng Git/Github để quản lý công việc</li>
+<li>Học tập các kiến thức mới phục vụ yêu cầu dự án</li>
+</ul>
+
+    </div>
+  
+
+  <h4 style="text-decoration: underline;">Nghiên cứu viên &amp; Quản lý dự án DDoS-RTNet</h4>
+  <p class="mb-0">
+    
+    
+      Trường Đại học HUTECH
+    
+  </p>
+
+  
+    <div class="prose prose-stone dark:prose-invert max-w-none">
+      <ul>
+<li>Tiếp nhận gợi ý từ Thầy hướng dẫn</li>
+<li>Ứng dụng kỹ thuật tối ưu Knowledge Distillation và Quantization</li>
+<li>Chuẩn bị kiến thức chuyên môn để viết bài báo khoa học</li>
+</ul>
+
+    </div>
+  
+
+  <h4 style="text-decoration: underline;">Thí sinh OLP AI 2025</h4>
+  <p class="mb-0">
+    
+    
+      Trường Đại học HUTECH
+    
+  </p>
+
+  
+    <div class="prose prose-stone dark:prose-invert max-w-none">
+      <ul>
+<li>Chuẩn bị kiến thức về ML, NLP, CV</li>
+<li>Thi không sử dụng AI</li>
+<li>Viết báo cáo và trình bày kết quả</li>
+</ul>
+
+    </div>
+  
+
+  <h4 style="text-decoration: underline;">Thực hiện dự án Speech Emotion Recognition</h4>
+  <p class="mb-0">
+    
+    
+      Trường Đại học HUTECH
+    
+  </p>
+
+  
+    <div class="prose prose-stone dark:prose-invert max-w-none">
+      <ul>
+<li>Nhận đề tài từ 2 giảng viên khoa</li>
+<li>Tìm kiếm và chọn lọc dữ liệu cần thiết</li>
+<li>Huấn luyện mô hình và hoàn thiện bài báo để nộp hội nghị</li>
+</ul>
+
+    </div>
+  
+
+</div>
+      </div>
+    </div>
+    
+    <div class="px-2">
+      <h2 class="accordion">
+        
+        <p
+         
+          onclick="expandAccordion(this)"
+          style="cursor: pointer"
+        >
+          <i class="fas fa-cogs"></i>
+          Kỹ năng</p>
+      </h2>
+
+      <div
+        class="panel overflow-hidden px-2 ml-2"
+        
+        id="skill-panel"
+        
+      >
+        <div class=""><script>
+  let skillPanel = document.querySelector("#skill-panel")
+    .previousElementSibling;
+  skillPanel.addEventListener("click", function() {
+    let skillBars = document.querySelectorAll("#skill-percent");
+    skillBars.forEach(elem => {
+      elem.style.width = elem.classList[0];
+    });
+  });
+</script>
+
+<code>Kỹ năng lập trình</code>
+<div class="w-100 mt-1 mb-3 border border-black dark:border-gray-300 rounded-sm" style="height: 1.25rem;">
+  <div id="skill-percent" class="90% bg-blue-500 dark:bg-yellow-700 h-full rounded-sm" style="width: 0; transition: all 0.5s;"></div>
+</div>
+
+<code>Kỹ năng giám sát và quản lý dự án, phân chia công việc</code>
+<div class="w-100 mt-1 mb-3 border border-black dark:border-gray-300 rounded-sm" style="height: 1.25rem;">
+  <div id="skill-percent" class="85% bg-blue-500 dark:bg-yellow-700 h-full rounded-sm" style="width: 0; transition: all 0.5s;"></div>
+</div>
+
+<code>Kỹ năng bảo trì, sửa chữa và gỡ lỗi dự án</code>
+<div class="w-100 mt-1 mb-3 border border-black dark:border-gray-300 rounded-sm" style="height: 1.25rem;">
+  <div id="skill-percent" class="80% bg-blue-500 dark:bg-yellow-700 h-full rounded-sm" style="width: 0; transition: all 0.5s;"></div>
+</div>
+
+<code>Kỹ năng trình bày và chủ trì buổi họp</code>
+<div class="w-100 mt-1 mb-3 border border-black dark:border-gray-300 rounded-sm" style="height: 1.25rem;">
+  <div id="skill-percent" class="80% bg-blue-500 dark:bg-yellow-700 h-full rounded-sm" style="width: 0; transition: all 0.5s;"></div>
+</div>
+
+<code>Kỹ năng vận hành thành thạo các công nghệ trong lập trình (AI, Redis, …)</code>
+<div class="w-100 mt-1 mb-3 border border-black dark:border-gray-300 rounded-sm" style="height: 1.25rem;">
+  <div id="skill-percent" class="85% bg-blue-500 dark:bg-yellow-700 h-full rounded-sm" style="width: 0; transition: all 0.5s;"></div>
+</div>
+
+<code>Kỹ năng Tin học văn phòng (Word, Excel, Email, …)</code>
+<div class="w-100 mt-1 mb-3 border border-black dark:border-gray-300 rounded-sm" style="height: 1.25rem;">
+  <div id="skill-percent" class="85% bg-blue-500 dark:bg-yellow-700 h-full rounded-sm" style="width: 0; transition: all 0.5s;"></div>
+</div>
+
+<code>Biết sử dụng hầu hết các phần mềm lập trình</code>
+<div class="w-100 mt-1 mb-3 border border-black dark:border-gray-300 rounded-sm" style="height: 1.25rem;">
+  <div id="skill-percent" class="75% bg-blue-500 dark:bg-yellow-700 h-full rounded-sm" style="width: 0; transition: all 0.5s;"></div>
+</div>
+
+<code>Kỹ năng sử dụng thành thạo Git, Github,…</code>
+<div class="w-100 mt-1 mb-3 border border-black dark:border-gray-300 rounded-sm" style="height: 1.25rem;">
+  <div id="skill-percent" class="90% bg-blue-500 dark:bg-yellow-700 h-full rounded-sm" style="width: 0; transition: all 0.5s;"></div>
+</div>
+
+</div>
+      </div>
+    </div>
+    
+    <div class="px-2">
+      <h2 class="accordion">
+        
+        <p
+         
+          onclick="expandAccordion(this)"
+          style="cursor: pointer"
+        >
+          <i class="fas fa-certificate"></i>
+          Bằng cấp &amp; Chứng chỉ</p>
+      </h2>
+
+      <div
+        class="panel overflow-hidden px-2 ml-2"
+        
+      >
+        <div class="">
+<section id="certification" class="section">
+  <div class="container mx-auto px-4">
+    <h2 class="text-2xl font-bold mb-4">
+      <i class="fas fa-certificate mr-2"></i>
+      Bằng cấp &amp; Chứng chỉ
+    </h2>
+
+    <ul class="list-disc ml-6 space-y-2">
+      
+        <li>
+          <strong>Chứng chỉ Giao tiếp và Làm việc nhóm</strong>
+           - HUTECH
+           (2024)
+        </li>
+      
+    </ul>
+  </div>
+</section>
+</div>
+      </div>
+    </div>
+        
+  </div>
+</div>
+
+
+      
+    </main>
+
+
+    
+
+    
+
+    
+    <script src="/pagefind/pagefind-ui.js"></script>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        new PagefindUI({
+          element: "#search",
+          showSubResults: true,
+          translations: {
+            placeholder: "Tìm kiếm bài viết...",
+            results_label: "kết quả tìm kiếm",
+            reset_button_title: "Xóa",
+            no_results: "Không có kết quả phù hợp"
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

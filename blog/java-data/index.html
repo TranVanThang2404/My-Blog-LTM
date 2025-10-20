@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en-us" class="m-auto dark">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <head>
+  
+  <title>Java Data Types &amp; Variables - My Blog</title>
+  
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+  />
+  <meta name="theme-color" content="" />
+  <meta name="description" content="My Blog" />
+  <meta name="author" content="Van Thang" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="//fonts.googleapis.com/css?family=Didact+Gothic%7CRoboto:400%7CRoboto+Mono"
+  />
+
+  
+  
+  <link href="/main.css" rel="stylesheet" />
+  
+
+  <style>
+     
+    html {
+      touch-action: manipulation;
+      scroll-behavior: smooth;
+    }
+
+    .panel {
+      max-height: 0;
+      transition: 0.3s ease-out;
+    }
+
+    .profile-photo-container {
+      img {
+        max-width: 100%;
+      }
+    }
+     
+    .pagefind-ui__search-input {
+      color: black;
+      width: 100%;
+      padding: 0.5em;
+      border-radius: 0.25em;
+      border: 1px solid gray;
+    }
+    .pagefind-ui__search-clear {
+      display: none;
+    }
+    .dark .pagefind-ui__search-input {
+      color: white;
+      background-color: #322d2d;
+      width: 100%;
+      padding: 0.5em;
+      border-radius: 0.25em;
+      border: 1px solid gray;
+    }
+    .dark .pagefind-ui__search-input::placeholder {
+      color: #8f8f8f;
+    }
+    .chevron {
+      transition: 300ms linear rotate;
+    }
+    .active > .chevron {
+      transform: rotate(90deg);
+    }
+  </style>
+
+  <script>
+    const expandAccordion = (elem) => {
+      const allPanels = Array.from(document.querySelectorAll(".panel"));
+      const allAccordion = Array.from(document.querySelectorAll(".accordion"));
+
+      if (!elem.parentElement.classList.contains("active")) {
+        allAccordion.forEach((acc) => {
+          acc.classList.remove("active");
+        });
+        elem.parentElement.classList.add("active");
+        allPanels.forEach(function (elem) {
+          elem.style.maxHeight = null;
+        });
+        let activePanel = elem.parentElement.nextElementSibling;
+        if (
+          activePanel.id != "skill-panel" &&
+          document.querySelector("#skill-panel")
+        ) {
+          let skillBars = Array.from(
+            document.querySelectorAll("#skill-percent")
+          );
+          skillBars.forEach((elem) => {
+            elem.style.width = "0";
+          });
+        }
+        activePanel.style.maxHeight = activePanel.scrollHeight + "px";
+      }
+    };
+  </script>
+
+  <script>
+    let html = document.querySelector("html");
+    let theme = window.localStorage.getItem("theme");
+
+    const setTheme = (theme) => {
+      html.classList.remove("light");
+      if (theme === "dark") {
+        html.classList.add("dark");
+        window.localStorage.setItem("theme", "dark");
+      } else {
+        html.classList.remove("dark");
+        window.localStorage.setItem("theme", "light");
+      }
+      fixThemeToggleIcon(theme);
+    };
+
+    const fixThemeToggleIcon = (theme) => {
+      let themeToggle = document.querySelector(".theme-toggle");
+      if (themeToggle) {
+        if (theme === "dark") {
+          themeToggle.classList.remove("fa-moon");
+          themeToggle.classList.add("fa-sun");
+        } else {
+          themeToggle.classList.remove("fa-sun");
+          themeToggle.classList.add("fa-moon");
+        }
+      }
+    };
+
+    if (theme == null) {
+      if (html.classList.contains("dark")) {
+        theme = "dark";
+      } else if (html.classList.contains("light")) {
+        theme = "light";
+      } else {
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+        if (prefersDark) {
+          theme = "dark";
+        } else {
+          theme = "light";
+        }
+      }
+    }
+
+    setTheme(theme);
+
+    const toggleTheme = () => {
+      html.classList.contains("dark") ? setTheme("light") : setTheme("dark");
+    };
+
+    window.onload = () => {
+      fixThemeToggleIcon(theme);
+
+      let defaultActivePanel = document.querySelector(".accordion.active");
+      if (defaultActivePanel) {
+        defaultActivePanel.nextElementSibling.style.maxHeight =
+          defaultActivePanel.nextElementSibling.scrollHeight + "px";
+      }
+    };
+
+    window.onresize = () => {
+      let defaultActivePanel = document.querySelector(".accordion.active");
+      if (defaultActivePanel) {
+        defaultActivePanel.nextElementSibling.style.maxHeight =
+          defaultActivePanel.nextElementSibling.scrollHeight + "px";
+      }
+    };
+  </script>
+</head>
+
+    
+    <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+  </head>
+  <body class="min-h-screen p-4 m-auto max-w-4xl flex flex-col bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300">
+    
+    
+      <header
+  class="nav flex flex-row row py-2 mb-6 w-full border-b border-gray-700 dark:border-gray-300 justify-between"
+>
+  <div>
+    <a class="nav-menu-item" href="http://localhost:1313/">Trang chủ</a>
+    <a class="nav-menu-item" href="/blog">Blog</a>
+    <a class="nav-menu-item" href="/profile">Profile</a>
+  </div>
+  <div>
+    <a class="mr-4" href="/search">
+      <i class="fas fa-search"></i>
+    </a>
+    <i
+      class="fas fa-sun theme-toggle text-blue-500 hover:text-blue-700 dark:text-yellow-300 dark:hover:text-yellow-500 cursor-pointer text-lg mr-9 sm:mr-0"
+      onclick="toggleTheme()"
+    ></i>
+  </div>
+</header>
+
+
+
+    
+
+    <main class="grow">
+      
+
+
+<div class="prose prose-stone dark:prose-invert max-w-none mx-auto px-4">
+  <header class="mb-6 border-b pb-4">
+    <h1 class="top-h1 text-4xl font-bold">Java Data Types &amp; Variables</h1>
+    <p class="text-sm text-gray-500 dark:text-gray-400">September 30, 2025</p>
+
+    
+  </header>
+
+  <article class="content">
+    <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; padding: 1rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px;">
+  <img src="/images/java-data.jpg" 
+       alt="Java Data Types Icon" 
+       style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); border: 3px solid white;"/>
+  <h2 style="margin: 0; font-size: 2.5rem; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">Java Data Types & Variables</h2>
+</div>
+<div class="image-container" style="text-align: center; margin: 2rem auto; max-width: 800px;">
+  <img src="/images/java-data.jpg" 
+       alt="Java Data Types Diagram" 
+       class="zoomable-image"
+       style="width: 100%; height: auto; object-fit: contain; cursor: zoom-in; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); transition: transform 0.3s ease, box-shadow 0.3s ease;"
+       onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 12px 24px rgba(0,0,0,0.3)'"
+       onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.2)'"
+       onclick="openImageModal(this.src, this.alt)"/>
+  <p style="font-size: 0.9em; color: #888; margin-top: 1rem; font-style: italic;">💡 Click vào ảnh để xem phóng to</p>
+</div>
+<div id="imageModal" class="image-modal" onclick="closeImageModal()" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); cursor: zoom-out;">
+  <img id="modalImage" style="margin: auto; display: block; max-width: 95%; max-height: 95%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 8px;"/>
+  <span style="position: absolute; top: 20px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; cursor: pointer;" onclick="closeImageModal()">&times;</span>
+</div>
+<script>
+function openImageModal(src, alt) {
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImage');
+  modal.style.display = 'block';
+  modalImg.src = src;
+  modalImg.alt = alt;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeImageModal() {
+  document.getElementById('imageModal').style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    closeImageModal();
+  }
+});
+</script>
+<h1 id="-biến-và-kiểu-dữ-liệu-trong-java">🧠 Biến và Kiểu Dữ Liệu trong Java</h1>
+<p>Trong Java, <strong>biến (variable)</strong> là vùng nhớ để lưu trữ dữ liệu, và <strong>kiểu dữ liệu (data type)</strong> xác định loại giá trị mà biến có thể lưu trữ. Java có hai nhóm kiểu dữ liệu chính:</p>
+<ul>
+<li><strong>Primitive Types</strong> (kiểu nguyên thủy)</li>
+<li><strong>Reference Types</strong> (kiểu tham chiếu)</li>
+</ul>
+<hr>
+<h2 id="1-kiểu-dữ-liệu-nguyên-thủy-primitive-types">1️⃣ Kiểu dữ liệu nguyên thủy (Primitive Types)</h2>
+<p>Java có 8 kiểu dữ liệu nguyên thủy:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Kiểu</th>
+          <th>Kích thước</th>
+          <th>Phạm vi</th>
+          <th>Mặc định</th>
+          <th>Mô tả</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>byte</code></td>
+          <td>8-bit</td>
+          <td>-128 đến 127</td>
+          <td><code>0</code></td>
+          <td>Số nguyên nhỏ</td>
+      </tr>
+      <tr>
+          <td><code>short</code></td>
+          <td>16-bit</td>
+          <td>-32,768 đến 32,767</td>
+          <td><code>0</code></td>
+          <td>Số nguyên trung bình</td>
+      </tr>
+      <tr>
+          <td><code>int</code></td>
+          <td>32-bit</td>
+          <td>-2³¹ đến 2³¹-1</td>
+          <td><code>0</code></td>
+          <td>Số nguyên phổ biến nhất</td>
+      </tr>
+      <tr>
+          <td><code>long</code></td>
+          <td>64-bit</td>
+          <td>-2⁶³ đến 2⁶³-1</td>
+          <td><code>0L</code></td>
+          <td>Số nguyên lớn</td>
+      </tr>
+      <tr>
+          <td><code>float</code></td>
+          <td>32-bit</td>
+          <td>~±3.4E+38</td>
+          <td><code>0.0f</code></td>
+          <td>Số thực độ chính xác đơn</td>
+      </tr>
+      <tr>
+          <td><code>double</code></td>
+          <td>64-bit</td>
+          <td>~±1.7E+308</td>
+          <td><code>0.0d</code></td>
+          <td>Số thực độ chính xác kép</td>
+      </tr>
+      <tr>
+          <td><code>char</code></td>
+          <td>16-bit</td>
+          <td>0 đến 65,535</td>
+          <td><code>'\u0000'</code></td>
+          <td>Ký tự Unicode</td>
+      </tr>
+      <tr>
+          <td><code>boolean</code></td>
+          <td>1-bit</td>
+          <td><code>true</code> / <code>false</code></td>
+          <td><code>false</code></td>
+          <td>Giá trị logic</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="2-kiểu-tham-chiếu-reference-types">2️⃣ Kiểu tham chiếu (Reference Types)</h2>
+<p>Lưu trữ <strong>địa chỉ</strong> của đối tượng trong bộ nhớ heap:</p>
+<ul>
+<li><code>String</code> – Chuỗi ký tự</li>
+<li><code>Array</code> – Mảng</li>
+<li><code>Class</code> – Lớp</li>
+<li><code>Interface</code> – Giao diện</li>
+<li><code>Enum</code> – Kiểu liệt kê</li>
+</ul>
+<p>📌 <strong>Khác biệt:</strong></p>
+<ul>
+<li><code>Primitive</code>: lưu giá trị trực tiếp trong stack</li>
+<li><code>Reference</code>: lưu địa chỉ tham chiếu đến object trong heap</li>
+</ul>
+<hr>
+<h2 id="3-khai-báo-và-khởi-tạo-biến">3️⃣ Khai báo và khởi tạo biến</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> age;
+</span></span><span style="display:flex;"><span>age <span style="color:#f92672">=</span> 21;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">double</span> salary <span style="color:#f92672">=</span> 5000.<span style="color:#a6e22e">50</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> 10, y <span style="color:#f92672">=</span> 20, z <span style="color:#f92672">=</span> 30;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">final</span> <span style="color:#66d9ef">double</span> PI <span style="color:#f92672">=</span> 3.<span style="color:#a6e22e">14159</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> MAX_USERS <span style="color:#f92672">=</span> 100;
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Age: &#34;</span> <span style="color:#f92672">+</span> age);
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Salary: &#34;</span> <span style="color:#f92672">+</span> salary);
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;PI: &#34;</span> <span style="color:#f92672">+</span> PI);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h1 id="4-ví-dụ-chi-tiết-với-tất-cả-kiểu-dữ-liệu">4️⃣ Ví dụ chi tiết với tất cả kiểu dữ liệu</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">byte</span> smallNumber <span style="color:#f92672">=</span> 100;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">short</span> mediumNumber <span style="color:#f92672">=</span> 30000;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> age <span style="color:#f92672">=</span> 25;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">long</span> population <span style="color:#f92672">=</span> 8000000000L;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">float</span> price <span style="color:#f92672">=</span> 99.<span style="color:#a6e22e">99f</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">double</span> pi <span style="color:#f92672">=</span> 3.<span style="color:#a6e22e">141592653589793</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">char</span> grade <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;A&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">char</span> unicode <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;\u0041&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">boolean</span> isJavaFun <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>String name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Nguyễn Văn A&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> numbers <span style="color:#f92672">=</span> {1, 2, 3};
+</span></span><span style="display:flex;"><span>String<span style="color:#f92672">[]</span> fruits <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;Táo&#34;</span>, <span style="color:#e6db74">&#34;Cam&#34;</span>, <span style="color:#e6db74">&#34;Chuối&#34;</span>};
+</span></span></code></pre></div><hr>
+<h1 id="5-type-casting-ép-kiểu">5️⃣ Type Casting (Ép kiểu)</h1>
+<h2 id="-widening-tự-động">🔸 Widening (tự động)</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> myInt <span style="color:#f92672">=</span> 9;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">double</span> myDouble <span style="color:#f92672">=</span> myInt; <span style="color:#75715e">// 9.0</span>
+</span></span></code></pre></div><h2 id="-narrowing-thủ-công">🔸 Narrowing (thủ công)</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">double</span> myDouble <span style="color:#f92672">=</span> 9.<span style="color:#a6e22e">78</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> myInt <span style="color:#f92672">=</span> (<span style="color:#66d9ef">int</span>) myDouble; <span style="color:#75715e">// 9</span>
+</span></span></code></pre></div><hr>
+<h1 id="6-wrapper-classes">6️⃣ Wrapper Classes</h1>
+<p>Mỗi primitive type đều có wrapper class tương ứng:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Primitive</th>
+          <th>Wrapper Class</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>byte</td>
+          <td>Byte</td>
+      </tr>
+      <tr>
+          <td>short</td>
+          <td>Short</td>
+      </tr>
+      <tr>
+          <td>int</td>
+          <td><strong>Integer</strong></td>
+      </tr>
+      <tr>
+          <td>long</td>
+          <td>Long</td>
+      </tr>
+      <tr>
+          <td>float</td>
+          <td>Float</td>
+      </tr>
+      <tr>
+          <td>double</td>
+          <td>Double</td>
+      </tr>
+      <tr>
+          <td>char</td>
+          <td><strong>Character</strong></td>
+      </tr>
+      <tr>
+          <td>boolean</td>
+          <td>Boolean</td>
+      </tr>
+  </tbody>
+</table>
+<p><strong>Ví dụ:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Integer wrapperInt <span style="color:#f92672">=</span> 10; <span style="color:#75715e">// Autoboxing</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> primitiveInt <span style="color:#f92672">=</span> wrapperInt; <span style="color:#75715e">// Unboxing</span>
+</span></span></code></pre></div><hr>
+<h1 id="7-phạm-vi-biến-variable-scope">7️⃣ Phạm vi biến (Variable Scope)</h1>
+<ul>
+<li>Local: trong method</li>
+<li>Instance: thuộc về object</li>
+<li>Static: thuộc về class</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Example</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> instanceVar <span style="color:#f92672">=</span> 10;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> staticVar <span style="color:#f92672">=</span> 20;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">method</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> localVar <span style="color:#f92672">=</span> 30;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h1 id="8-quy-tắc-đặt-tên-biến">8️⃣ Quy tắc đặt tên biến</h1>
+<h2 id="-được-phép">✅ <strong>Được phép:</strong></h2>
+<ul>
+<li>Bắt đầu bằng chữ cái, <code>_</code>, hoặc <code>$</code></li>
+<li>Chứa chữ cái, số, <code>_</code>, <code>$</code></li>
+<li>Phân biệt hoa thường (<code>age</code> ≠ <code>Age</code>)</li>
+</ul>
+<h2 id="-không-được-phép">❌ <strong>Không được phép:</strong></h2>
+<ul>
+<li>Bắt đầu bằng số: <code>1age</code> ❌</li>
+<li>Chứa khoảng trắng: <code>my age</code> ❌</li>
+<li>Sử dụng từ khóa: <code>int</code>, <code>class</code>, <code>public</code> ❌</li>
+</ul>
+<p><strong>Convention (Quy ước):</strong></p>
+<ul>
+<li>camelCase cho biến &amp; method</li>
+<li>PascalCase cho class</li>
+<li>UPPER_SNAKE_CASE cho hằng số</li>
+</ul>
+<hr>
+<h1 id="9-so-sánh-primitive-vs-reference">9️⃣ So sánh Primitive vs Reference</h1>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> 5;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> b <span style="color:#f92672">=</span> 5;
+</span></span><span style="display:flex;"><span>System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(a <span style="color:#f92672">==</span> b); <span style="color:#75715e">// true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>String s1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> String(<span style="color:#e6db74">&#34;Hello&#34;</span>);
+</span></span><span style="display:flex;"><span>String s2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> String(<span style="color:#e6db74">&#34;Hello&#34;</span>);
+</span></span><span style="display:flex;"><span>System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(s1 <span style="color:#f92672">==</span> s2); <span style="color:#75715e">// false</span>
+</span></span><span style="display:flex;"><span>System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(s1.<span style="color:#a6e22e">equals</span>(s2)); <span style="color:#75715e">// true</span>
+</span></span></code></pre></div><hr>
+<h1 id="-lưu-ý-quan-trọng">🔟 Lưu ý quan trọng</h1>
+<ul>
+<li>
+<p>Integer overflow: vượt giới hạn → quay vòng</p>
+</li>
+<li>
+<p>Float precision: không chính xác tuyệt đối</p>
+</li>
+<li>
+<p>Default values: chỉ áp dụng cho biến instance</p>
+</li>
+</ul>
+<hr>
+<h1 id="-tài-liệu-tham-khảo">📚 Tài liệu tham khảo</h1>
+<ul>
+<li><a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">Java Data Types - Oracle Docs</a></li>
+<li><a href="https://www.w3schools.com/java/java_variables.asp">Java Variables - W3Schools</a></li>
+<li><a href="https://www.geeksforgeeks.org/data-types-in-java/">Primitive Data Types - GeeksforGeeks</a></li>
+</ul>
+
+  </article>
+
+  <div class="flex flex-row justify-around my-2">
+  <h3 class="mb-1 mt-1 text-left mr-4">
+    
+    <a
+      href="/blog/markdown_syntax/java-oop/"
+      title="OOP trong JavaScript"
+    >
+      <i class="nav-menu fas fa-chevron-circle-left"></i>
+    </a>
+    
+  </h3>
+  <h3 class="mb-1 mt-1 text-left ml-4">
+    
+    <a
+      href="/blog/markdown_syntax/java-collection-framwork/"
+      title="Java Collections Framework"
+    >
+      <i class="nav-menu fas fa-chevron-circle-right"></i>
+    </a>
+    
+  </h3>
+</div>
+
+</div>
+
+
+      
+    </main>
+
+
+    
+      <div class="space-y-16 mt-16">
+        <section>
+          <div class="p-6 rounded-xl bg-gradient-to-r from-yellow-100 to-pink-100 dark:from-yellow-900 dark:to-pink-900 shadow-lg border border-yellow-300 dark:border-yellow-700">
+  <p class="mb-4 text-lg font-semibold text-yellow-800 dark:text-yellow-200">🌟 Bạn đánh giá bài viết này bao nhiêu sao?</p>
+  <div id="stars" class="flex gap-3 text-4xl text-gray-400 dark:text-gray-500 cursor-pointer">
+    <span data-value="1">★</span>
+    <span data-value="2">★</span>
+    <span data-value="3">★</span>
+    <span data-value="4">★</span>
+    <span data-value="5">★</span>
+  </div>
+  <p id="rating-result" class="mt-4 text-sm text-gray-600 dark:text-gray-300 italic"></p>
+
+  <script>
+    const stars = document.querySelectorAll('#stars span');
+    const result = document.getElementById('rating-result');
+    stars.forEach(star => {
+      star.addEventListener('click', () => {
+        const rating = parseInt(star.getAttribute('data-value'));
+        stars.forEach(s => s.classList.remove('active'));
+        for (let i = 0; i < rating; i++) {
+          stars[i].classList.add('active');
+        }
+        result.textContent = `✅ Bạn đã đánh giá ${rating} sao. Cảm ơn bạn!`;
+        localStorage.setItem(window.location.pathname + '_rating', rating);
+      });
+    });
+    const savedRating = localStorage.getItem(window.location.pathname + '_rating');
+    if (savedRating) {
+      for (let i = 0; i < savedRating; i++) {
+        stars[i].classList.add('active');
+      }
+      result.textContent = `⭐ Bạn đã đánh giá ${savedRating} sao trước đó.`;
+    }
+  </script>
+
+  <style>
+    #stars span:hover {
+      color: #facc15;
+      transform: scale(1.2);
+    }
+    #stars span.active {
+      color: #f59e0b;
+      text-shadow: 0 0 5px rgba(255, 193, 7, 0.6);
+    }
+  </style>
+</div>
+
+        </section>
+
+        <section>
+          <div class="p-6 rounded-xl bg-gray-100 dark:bg-gray-800 shadow-lg border border-gray-300 dark:border-gray-700">
+  <h2 class="text-lg font-semibold mb-4 text-gray-700 dark:text-gray-200">💬 Bình luận</h2>
+  
+  <script src="https://giscus.app/client.js"
+          data-repo="TranVanThang2404/My-Blog-LTM"
+          data-repo-id="R_kgDOQFqULw"
+          data-category="General"
+          data-category-id="DIC_kwDOQFqUL84Cw2l4"
+          data-mapping="pathname"
+          data-strict="0"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="bottom"
+          data-theme="noborder_dark"
+          data-lang="vi"
+          crossorigin="anonymous"
+          async>
+  </script>
+</div>
+
+        </section>
+      </div>
+    
+
+    
+      <footer class="text-sm text-center border-t border-gray-500  py-8 ">
+    
+    <div class="mb-4 space-x-4">
+        
+        <a href="https://github.com/yourusername" target="_blank" rel="noopener" aria-label="Github"
+           class="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-200">
+            <i class="fab fa-github text-xl"></i>
+        </a>
+        <a href="https://www.facebook.com/thang.tran.402633?locale=vi_VN" target="_blank" rel="noopener" aria-label="Facebook"
+           class="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-200">
+            <i class="fab fa-facebook-f text-xl"></i>
+        </a>
+        <a href="mailto:thangtran@gmail.com" aria-label="Email"
+           class="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-200">
+            <i class="fas fa-envelope text-xl"></i>
+        </a>
+        <a href="/profile" aria-label="Profile"
+           class="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-200">
+            <i class="fas fa-user-circle text-xl"></i>
+        </a>
+    </div>
+
+    <p class="text-xs text-gray-600 dark:text-gray-400">
+        © 2025 <span class="font-medium">Trần Văn Thắng</span>. All rights reserved.
+        
+        
+            | Built with <a href="https://gohugo.io/" target="_blank" class="hover:underline">Hugo</a>
+        
+    </p>
+
+    
+</footer>
+    
+
+    
+    <script src="/pagefind/pagefind-ui.js"></script>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        new PagefindUI({
+          element: "#search",
+          showSubResults: true,
+          translations: {
+            placeholder: "Tìm kiếm bài viết...",
+            results_label: "kết quả tìm kiếm",
+            reset_button_title: "Xóa",
+            no_results: "Không có kết quả phù hợp"
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
