@@ -16,43 +16,6 @@ icon = "/images/java-collection.jpg"
   <h2 style="margin: 0; font-size: 2.5rem; color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">Java Collections Framework</h2>
 </div>
 
-<div class="image-container" style="text-align: center; margin: 2rem auto; max-width: 800px;">
-  <img src="/images/java-collection.jpg" 
-       alt="Java Collections Framework" 
-       class="zoomable-image"
-       style="width: 100%; height: auto; object-fit: contain; cursor: zoom-in; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); transition: transform 0.3s ease, box-shadow 0.3s ease;"
-       onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 12px 24px rgba(0,0,0,0.3)'"
-       onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.2)'"
-       onclick="openImageModal(this.src, this.alt)"/>
-  <p style="font-size: 0.9em; color: #888; margin-top: 1rem; font-style: italic;">💡 Click vào ảnh để xem phóng to</p>
-</div>
-
-<div id="imageModal" class="image-modal" onclick="closeImageModal()" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); cursor: zoom-out;">
-  <img id="modalImage" style="margin: auto; display: block; max-width: 95%; max-height: 95%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 8px;"/>
-  <span style="position: absolute; top: 20px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; cursor: pointer;" onclick="closeImageModal()">&times;</span>
-</div>
-
-<script>
-function openImageModal(src, alt) {
-  const modal = document.getElementById('imageModal');
-  const modalImg = document.getElementById('modalImage');
-  modal.style.display = 'block';
-  modalImg.src = src;
-  modalImg.alt = alt;
-  document.body.style.overflow = 'hidden';
-}
-
-function closeImageModal() {
-  document.getElementById('imageModal').style.display = 'none';
-  document.body.style.overflow = 'auto';
-}
-
-document.addEventListener('keydown', function(event) {
-  if (event.key === 'Escape') {
-    closeImageModal();
-  }
-});
-</script>
 
 # 📚 Java Collections Framework
 
