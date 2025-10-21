@@ -1,4 +1,4 @@
-baseURL = 'https://example.org/'
+baseURL = 'my-blog-ltm-2404.vercel.app'
 languageCode = 'en-us'
 title = 'My Blog'
 theme = "mytheme"
