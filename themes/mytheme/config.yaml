@@ -1,0 +1,129 @@
+baseURL: "https://tranvanthang2404.github.io/My-Blog-LTM/"
+theme: mytheme
+languageCode: en-us
+build:
+  writeStats: true
+title: My Blog
+
+outputs:
+  home:
+    - HTML
+    - JSON
+
+params:
+  author: Van Thang
+  description: My Blog
+  copyright: >-
+    powered by [hugo](https://gohugo.io/)
+  theme:
+    mainTheme: dark
+    showAttribute: true
+    singlePage: false  
+
+  profile:
+    name: "Van Thang, Tsniw."
+    tagline: LTM
+    location: "Ho Chi Minh City, Vietnam"
+    photo: profile.jpg
+
+  # social:
+  #   title: Links
+  #   list:
+  #     - icon: fas fa-envelope
+  #       url: "mailto:tranthang2442004@gmail.com"
+  #       title: Email
+  #     - icon: fab fa-github
+  #       url: "https://github.com/TranVanThang2404"
+  #       title: GitHub
+  #     - icon: fab fa-facebook
+  #       url: "https://www.facebook.com/thang.tran.402633?locale=vi_VN"
+  #       title: Facebook
+
+  showInAccordion:
+    - item: aboutme
+      expand: true
+    - item: experience
+    - item: skill
+    - item: certification
+
+  aboutme:
+    title: Về tôi
+    icon: fas fa-user
+    description: "Xin chào! Mình là Trần Văn Thắng, yêu thích Java, JavaScript và AI. Sinh viên HUTECH, chuyên ngành Công nghệ thông tin."
+
+  experience:
+    title: Kinh nghiệm
+    icon: fas fa-briefcase
+    list:
+      - position: Nghiên cứu viên - Dự án Phát hiện tấn công mạng bằng AI
+        company: Trường Đại học HUTECH
+        details: |-
+          - Tiếp nhận kế hoạch dự án từ Thầy hướng dẫn
+          - Quản lý dự án, đề xuất phương pháp phát triển với đội nhóm 3 người
+          - Tìm kiếm dữ liệu và mô hình phù hợp với dự án
+          - Tiền xử lý dữ liệu và huấn luyện mô hình
+          - Lập trình và debug trực tiếp trong quá trình dự án
+          - So sánh, đánh giá các mô hình và chọn mô hình tối ưu
+          - Viết luận án và bảo vệ trước hội đồng chấm điểm
+
+      - position: Lập trình viên - Dự án CFP (Giao dịch tài chính tự động)
+        company: Công ty/Tổ chức liên quan
+        details: |-
+          - Tiếp nhận và tìm hiểu dự án từ Leader
+          - Phát triển Web sử dụng React + Vite
+          - Sử dụng Git/Github để quản lý công việc
+          - Học tập các kiến thức mới phục vụ yêu cầu dự án
+
+      - position: Nghiên cứu viên & Quản lý dự án DDoS-RTNet
+        company: Trường Đại học HUTECH
+        details: |-
+          - Tiếp nhận gợi ý từ Thầy hướng dẫn
+          - Ứng dụng kỹ thuật tối ưu Knowledge Distillation và Quantization
+          - Chuẩn bị kiến thức chuyên môn để viết bài báo khoa học
+
+      - position: Thí sinh OLP AI 2025
+        company: Trường Đại học HUTECH
+        details: |-
+          - Chuẩn bị kiến thức về ML, NLP, CV
+          - Thi không sử dụng AI
+          - Viết báo cáo và trình bày kết quả
+
+      - position: Thực hiện dự án Speech Emotion Recognition
+        company: Trường Đại học HUTECH
+        details: |-
+          - Nhận đề tài từ 2 giảng viên khoa
+          - Tìm kiếm và chọn lọc dữ liệu cần thiết
+          - Huấn luyện mô hình và hoàn thiện bài báo để nộp hội nghị
+
+  skill:
+    title: Kỹ năng
+    panelId: skill-panel
+    icon: fas fa-cogs
+    list:
+      - skill: "Kỹ năng lập trình"
+        skillrating: 90
+      - skill: "Kỹ năng giám sát và quản lý dự án, phân chia công việc"
+        skillrating: 85
+      - skill: "Kỹ năng bảo trì, sửa chữa và gỡ lỗi dự án"
+        skillrating: 80
+      - skill: "Kỹ năng trình bày và chủ trì buổi họp"
+        skillrating: 80
+      - skill: "Kỹ năng vận hành thành thạo các công nghệ trong lập trình (AI, Redis, …)"
+        skillrating: 85
+      - skill: "Kỹ năng Tin học văn phòng (Word, Excel, Email, …)"
+        skillrating: 85
+      - skill: "Biết sử dụng hầu hết các phần mềm lập trình"
+        skillrating: 75
+      - skill: "Kỹ năng sử dụng thành thạo Git, Github,…"
+        skillrating: 90
+
+  certification:
+    title: "Bằng cấp & Chứng chỉ"
+    icon: fas fa-certificate
+    list:
+      - name: "Chứng chỉ Giao tiếp và Làm việc nhóm"
+        issuedBy: "HUTECH"
+        year: 2024
+
+
+

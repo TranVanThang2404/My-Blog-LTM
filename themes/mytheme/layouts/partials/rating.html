@@ -1,0 +1,45 @@
+<div class="p-6 rounded-xl bg-gradient-to-r from-yellow-100 to-pink-100 dark:from-yellow-900 dark:to-pink-900 shadow-lg border border-yellow-300 dark:border-yellow-700">
+  <p class="mb-4 text-lg font-semibold text-yellow-800 dark:text-yellow-200">🌟 Bạn đánh giá bài viết này bao nhiêu sao?</p>
+  <div id="stars" class="flex gap-3 text-4xl text-gray-400 dark:text-gray-500 cursor-pointer">
+    <span data-value="1">★</span>
+    <span data-value="2">★</span>
+    <span data-value="3">★</span>
+    <span data-value="4">★</span>
+    <span data-value="5">★</span>
+  </div>
+  <p id="rating-result" class="mt-4 text-sm text-gray-600 dark:text-gray-300 italic"></p>
+
+  <script>
+    const stars = document.querySelectorAll('#stars span');
+    const result = document.getElementById('rating-result');
+    stars.forEach(star => {
+      star.addEventListener('click', () => {
+        const rating = parseInt(star.getAttribute('data-value'));
+        stars.forEach(s => s.classList.remove('active'));
+        for (let i = 0; i < rating; i++) {
+          stars[i].classList.add('active');
+        }
+        result.textContent = `✅ Bạn đã đánh giá ${rating} sao. Cảm ơn bạn!`;
+        localStorage.setItem(window.location.pathname + '_rating', rating);
+      });
+    });
+    const savedRating = localStorage.getItem(window.location.pathname + '_rating');
+    if (savedRating) {
+      for (let i = 0; i < savedRating; i++) {
+        stars[i].classList.add('active');
+      }
+      result.textContent = `⭐ Bạn đã đánh giá ${savedRating} sao trước đó.`;
+    }
+  </script>
+
+  <style>
+    #stars span:hover {
+      color: #facc15;
+      transform: scale(1.2);
+    }
+    #stars span.active {
+      color: #f59e0b;
+      text-shadow: 0 0 5px rgba(255, 193, 7, 0.6);
+    }
+  </style>
+</div>

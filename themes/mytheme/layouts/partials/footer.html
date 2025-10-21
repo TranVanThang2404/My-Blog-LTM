@@ -1,0 +1,40 @@
+<footer class="text-sm text-center border-t border-gray-500 {{ if .IsHome }} bg-gray-200 dark:bg-dark rounded-b-lg py-4 {{ else }} py-8 {{ end }}">
+    
+    <div class="mb-4 space-x-4">
+        {{/* THAY THẾ 'yourusername'/'youremail' BẰNG THÔNG TIN CỦA BẠN */}}
+        <a href="https://github.com/yourusername" target="_blank" rel="noopener" aria-label="Github"
+           class="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-200">
+            <i class="fab fa-github text-xl"></i>
+        </a>
+        <a href="https://www.facebook.com/thang.tran.402633?locale=vi_VN" target="_blank" rel="noopener" aria-label="Facebook"
+           class="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-200">
+            <i class="fab fa-facebook-f text-xl"></i>
+        </a>
+        <a href="mailto:thangtran@gmail.com" aria-label="Email"
+           class="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-200">
+            <i class="fas fa-envelope text-xl"></i>
+        </a>
+        <a href="{{ `profile` | relURL }}" aria-label="Profile"
+           class="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-200">
+            <i class="fas fa-user-circle text-xl"></i>
+        </a>
+    </div>
+
+    <p class="text-xs text-gray-600 dark:text-gray-400">
+        © {{ now.Format "2006" }} <span class="font-medium">Trần Văn Thắng</span>. All rights reserved.
+        
+        {{ if not .Site.Params.theme.hide_hugo_credit }}
+            | Built with <a href="https://gohugo.io/" target="_blank" class="hover:underline">Hugo</a>
+        {{ end }}
+    </p>
+
+    {{ if .Site.Params.theme.singlePage }}
+    <div class="mt-4">
+        <i
+            class="fas fa-sun theme-toggle text-blue-500 hover:text-blue-700 dark:text-yellow-300 dark:hover:text-yellow-500 cursor-pointer text-lg mr-9 sm:mr-0"
+            onclick="toggleTheme()"
+        ></i>
+        {{ partial "toggleTheme.html" . }}
+    </div>
+    {{ end }}
+</footer>
