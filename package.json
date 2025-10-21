@@ -2,9 +2,9 @@
   "name": "my-blog-LTM",
   "version": "1.0.0",
   "scripts": {
-    "build": "npx tailwindcss -i ./assets/main.css -o ./static/css/style.css --minify && hugo --minify && npx -y pagefind --site public",
+    "build": "npx tailwindcss -i ./assets/main.css -o ./static/css/style.css --minify && hugo --minify",
     "dev": "npx tailwindcss -i ./assets/main.css -o ./static/css/style.css --watch",
-    "vercel-build": "curl -L https://github.com/gohugoio/hugo/releases/download/v0.138.0/hugo_extended_0.138.0_linux-amd64.tar.gz -o hugo.tar.gz && tar -xzf hugo.tar.gz && chmod +x hugo && npx tailwindcss -i ./assets/main.css -o ./static/css/style.css --minify && ./hugo --minify --baseURL https://my-blog-ltm-ltao.vercel.app/ && npx -y pagefind --site public"
+    "vercel-build": "curl -L https://github.com/gohugoio/hugo/releases/download/v0.138.0/hugo_extended_0.138.0_linux-amd64.tar.gz -o hugo.tar.gz && tar -xzf hugo.tar.gz && chmod +x hugo && npx tailwindcss -i ./assets/main.css -o ./static/css/style.css --minify && ./hugo --minify --baseURL https://my-blog-ltm-ltao.vercel.app/"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",
