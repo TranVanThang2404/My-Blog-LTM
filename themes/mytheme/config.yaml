@@ -1,4 +1,4 @@
-baseURL: "https://tranvanthang2404.github.io/My-Blog-LTM/"
+baseURL: "https://my-blog-ltm.vercel.app/"
 theme: mytheme
 languageCode: en-us
 build:
