@@ -29,15 +29,7 @@
   />
 
   
-{{ $opts := dict "binary" "tailwindcss" }}
-{{ $css := resources.Get "main.css" | css.PostCSS $opts }}
-{{ if hugo.IsProduction }}
-  {{ with $css | minify | fingerprint }}
-    <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity | safeHTMLAttr }}" crossorigin="anonymous">
-  {{ end }}
-{{ else }}
-  <link rel="stylesheet" href="{{ $css.RelPermalink }}">
-{{ end }}
+<link rel="stylesheet" href="/css/style.css">
 
 
   <style>
