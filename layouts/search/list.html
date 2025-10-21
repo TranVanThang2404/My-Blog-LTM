@@ -1,10 +1,14 @@
-<!-- HTML: Ô tìm kiếm và danh sách kết quả -->
-<div class="relative">
+{{ define "main" }}
+<div class="relative max-w-3xl mx-auto mt-8">
+<a href="/" class="inline-block mb-4 px-4 py-2 bg-blue-100 dark:bg-blue-800 text-blue-800 dark:text-white rounded hover:bg-blue-200 dark:hover:bg-blue-700 transition">
+  ⬅ Quay về trang chủ
+</a>
+
+
   <input type="text" id="searchInput" placeholder="🔍 Nhập từ khóa..." class="w-full p-3 rounded-lg border dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
   <ul id="searchResults" class="mt-4 space-y-2"></ul>
 </div>
 
-<!-- JavaScript: Tìm kiếm và hiển thị kết quả -->
 <script>
 fetch('/index.json')
   .then(res => res.json())
@@ -28,7 +32,7 @@ fetch('/index.json')
         } else {
           matches.forEach(post => {
             const li = document.createElement('li');
-            li.innerHTML = `<div class="font-medium text-blue-600 dark:text-blue-400 hover:underline">${post.title}</div>`;
+            li.innerHTML = `<a href="${post.url}" class="font-medium text-blue-600 dark:text-blue-400 hover:underline">${post.title}</a>`;
             results.appendChild(li);
           });
         }
@@ -39,3 +43,4 @@ fetch('/index.json')
     console.error('Lỗi khi tải dữ liệu tìm kiếm:', error);
   });
 </script>
+{{ end }}
