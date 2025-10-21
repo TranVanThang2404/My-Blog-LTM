@@ -1,9 +1,7 @@
-<div
-  class="w-full p-2 flex justify-center align-middle profile-photo-container"
->
+<div class="w-full p-2 flex justify-center align-middle profile-photo-container">
   <img
-    class="rounded-sm"
-    src="{{ `images` | relURL }}/{{ .Site.Params.profile.photo }}"
-    alt="{{ .Site.Params.author }}"
+    class="rounded-sm w-32 h-32 object-cover"
+    src="{{ (print "images/" .Site.Params.profile.photo) | relURL }}"
+    alt="{{ .Site.Params.profile.name }}"
   />
 </div>
