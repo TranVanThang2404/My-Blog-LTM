@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}" class="m-auto {{ .Site.Params.theme.mainTheme | default "light" }}">
+  <head>
+    {{ partial "head.html" . }}
+    <!-- Pagefind CSS -->
+    <link href="{{ "pagefind/pagefind-ui.css" | relURL }}" rel="stylesheet">
+  </head>
+  <body class="min-h-screen p-4 m-auto max-w-4xl flex flex-col bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300">
+    
+    {{ if not .Site.Params.theme.singlePage }}
+      {{ partial "header.html" . }}
+    {{ end }}
+
+    <main class="grow">
+      {{ block "main" . }}{{ end }}
+
+      {{ if eq .Section "search" }}
+        <!-- Search UI chỉ hiển thị ở trang /search/ -->
+        <div id="search" class="my-8"></div>
+      {{ end }}
+    </main>
+
+
+    {{ if and (not .IsHome) (.IsPage) }}
+      <div class="space-y-16 mt-16">
+        <section>
+          {{ partial "rating.html" . }}
+        </section>
+
+        <section>
+          {{ partial "comments.html" . }}
+        </section>
+      </div>
+    {{ end }}
+
+    {{ if and (not .IsHome) (not .Site.Params.theme.singlePage) }}
+      {{ partial "footer.html" . }}
+    {{ end }}
+
+    <!-- Pagefind JS -->
+    <script src="{{ "pagefind/pagefind-ui.js" | relURL }}"></script>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        new PagefindUI({
+          element: "#search",
+          showSubResults: true,
+          translations: {
+            placeholder: "Tìm kiếm bài viết...",
+            results_label: "kết quả tìm kiếm",
+            reset_button_title: "Xóa",
+            no_results: "Không có kết quả phù hợp"
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

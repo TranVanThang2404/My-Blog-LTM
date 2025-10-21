@@ -1,0 +1,8 @@
+node_modules/
+public/
+assets/css/style.css
+.hugo_build.lock
+resources/
+*.exe
+tailwindcss.exe.exe
+package-lock.json

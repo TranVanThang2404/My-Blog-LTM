@@ -1,0 +1,6 @@
+baseURL = 'https://my-blog-ltm.vercel.app/'
+languageCode = 'en-us'
+title = 'My Blog'
+theme = "mytheme"
+[markup.goldmark.renderer]
+unsafe = true
