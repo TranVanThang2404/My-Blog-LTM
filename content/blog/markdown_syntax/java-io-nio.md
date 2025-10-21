@@ -5,6 +5,7 @@ title = 'Java I/O & NIO'
 description = 'Tìm hiểu Java I/O và Java NIO, sự khác biệt giữa Stream và Channel, minh họa đọc file bằng I/O và NIO trong Java.'
 tags = ["Java", "I/O", "NIO", "File", "Programming"]
 categories = ["Java", "Programming"]
+icon = "/images/java-io-nio.jpg"
 +++
 
 <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; padding: 1rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px;">

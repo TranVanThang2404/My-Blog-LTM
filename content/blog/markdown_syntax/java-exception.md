@@ -5,6 +5,7 @@ draft = false
 description = "Giới thiệu về Java Multithreading với ví dụ minh họa"
 tags = ["java", "multithreading", "threads"]
 categories = ["programming", "java"]
+icon = "/images/java-exception.jpg"
 +++
 
 <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; padding: 1rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px;">

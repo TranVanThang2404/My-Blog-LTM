@@ -5,6 +5,7 @@ title = 'Java TCP Socket'
 description = 'Hướng dẫn sử dụng Java TCP Socket: ServerSocket, Socket, InputStream/OutputStream, với ví dụ client-server đơn giản.'
 tags = ["Java", "TCP", "Socket", "Networking", "Programming"]
 categories = ["Java", "Networking"]
+icon = "/images/java-tcp-socket.jpg"
 +++
 
 <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; padding: 1rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px;">

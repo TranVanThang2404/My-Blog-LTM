@@ -5,6 +5,7 @@ title = 'JavaScript Fetch API'
 description = 'Hướng dẫn JavaScript Fetch API: gửi HTTP request hiện đại, sử dụng Promise và async/await, ví dụ lấy dữ liệu từ JSONPlaceholder.'
 tags = ["JavaScript", "Fetch API", "AJAX", "JSON", "Frontend"]
 categories = ["JavaScript", "Frontend"]
+icon = "/images/javascript-fetch-api.jpg"
 +++
 
 <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; padding: 1rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px;">

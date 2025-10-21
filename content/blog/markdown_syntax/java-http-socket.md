@@ -5,6 +5,7 @@ title = 'Java HTTP Socket'
 description = 'Hướng dẫn sử dụng Java Socket để gửi HTTP request và nhận HTTP response. Ví dụ minh họa client và server HTTP bằng Java.'
 tags = ["Java", "Socket", "HTTP", "Network"]
 categories = ["Java", "Networking"]
+icon = "/images/java-http-socket.png"
 +++
 
 <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; padding: 1rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px;">

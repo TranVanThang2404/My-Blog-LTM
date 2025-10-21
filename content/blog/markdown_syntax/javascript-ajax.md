@@ -5,6 +5,7 @@ title = 'JavaScript AJAX'
 description = 'Tìm hiểu JavaScript AJAX: gửi và nhận dữ liệu từ server mà không tải lại trang, ví dụ minh họa bằng Fetch API.'
 tags = ["JavaScript", "AJAX", "Fetch API", "JSON", "Frontend"]
 categories = ["JavaScript", "Frontend"]
+icon = "/images/javascript-ajax.jpg"
 +++
 
 <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; padding: 1rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px;">

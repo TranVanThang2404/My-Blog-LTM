@@ -1,32 +1,33 @@
 {{ define "main" }}
-<div class="prose dark:prose-invert max-w-none">
-  <h1 class="standard {{ if eq .Kind `term` }}font-italic{{ end }}">
-    {{ if eq .Kind "term" }}#{{ .Data.Term }}{{ else }}{{- .Title -}}{{ end }}
+<div class="max-w-screen-md mx-auto px-4 py-6">
+  <h1 class="text-2xl font-bold text-gray-800 dark:text-white mb-8">
+    {{ if eq .Kind "term" }}#{{ .Data.Term }}{{ else }}{{ .Title }}{{ end }}
   </h1>
-  {{ range $key, $val := (.Paginator 10).Pages }}
-  <div class="">
-    <div
-      class="rounded-sm hover:bg-gray-400 dark:hover:bg-darker flex flex-row items-center justify-start accordion mt-0 mb-0 p-2 {{ if eq $key 0 }}active{{ end }}"
-    >
-      <i
-        onclick="expandAccordion(this)"
-        class="cursor-pointer chevron p-2 mr-4 fas fa-chevron-right rounded-sm text-blue-500 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-gray-700"
-      ></i>
-      <a href="{{ .Permalink | relURL }}"
-        ><h2 class="accordion m-0">{{- .Title -}}</h2></a
-      >
-    </div>
-    <div
-      id="panel-item-{{ $key }}"
-      class="panel metadata-panel overflow-hidden bg-gray-200 dark:bg-dark"
-    >
-      <div class="metadata p-2">{{- partial "metadata" . -}}</div>
-    </div>
-  </div>
-  {{ end }}
-</div>
 
-<div class="my-6 flex justify-center pagination-links">
-  {{ template "_internal/pagination.html" (dict "page" . "format" "terse") }}
+  <!-- Grid layout: 2 bài mỗi hàng, khoảng cách rõ -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-10">
+    {{ range (.Paginator 10).Pages }}
+    <div class="bg-white dark:bg-gray-900 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 overflow-hidden transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg">
+      {{ with .Params.icon }}
+      <img src="{{ . }}" alt="{{ $.Title }}" class="w-full h-28 object-cover">
+      {{ end }}
+      <div class="p-4">
+        <h2 class="text-base font-semibold text-gray-800 dark:text-white mb-2">
+          <a href="{{ .Permalink | relURL }}" class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">{{ .Title }}</a>
+        </h2>
+        {{ with .Params.description }}
+        <p class="text-sm text-gray-600 dark:text-gray-300 mb-3 line-clamp-2">{{ . }}</p>
+        {{ end }}
+        <p class="text-xs text-gray-500 dark:text-gray-400 mb-2">📅 {{ .Date.Format "02/01/2006" }}</p>
+        <a href="{{ .Permalink | relURL }}" class="text-blue-500 dark:text-blue-300 hover:underline text-xs">Đọc tiếp →</a>
+      </div>
+    </div>
+    {{ end }}
+  </div>
+
+  <!-- Pagination -->
+  <div class="mt-10 flex justify-center">
+    {{ template "_internal/pagination.html" (dict "page" . "format" "terse") }}
+  </div>
 </div>
 {{ end }}
